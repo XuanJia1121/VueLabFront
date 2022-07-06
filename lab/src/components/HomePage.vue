@@ -4,9 +4,12 @@
   <!-- top -->
   <div id="jumbotron" class="jumbotron jumbotron-fluid">
     <div class="container">
-      <div class="row align-items-center">
+      <div id="titleRow" class="row align-items-center">
         <div class="col-4">
           <font id="title">MMLab</font>
+        </div>
+        <div class="col-8 d-flex justify-content-end">
+          <el-button @click="test()" type="info" icon="el-icon-s-custom" circle></el-button>
         </div>
       </div>
     </div>
@@ -50,19 +53,26 @@
 <script>
 /* eslint-disable */
 
+import {ApiServer} from '../api/http.js'
+
 export default {
   data() {
     return {
-      v
-    };
+      
+    }
   },
   methods: {
-  
-  }, 
-  computed:{
-   
+    test() {
+      ApiServer.fetch('/test/test',{})
+      .then(function(res){
+        console.log(res);
+      })
+      .catch(function(err){
+        console.log(err);
+      })
+    }
   },
-};
+}
 </script>
 
 <style scoped>
@@ -71,10 +81,9 @@ export default {
 }
 #title {
   color:aliceblue;
-  height: 60px;
+  font-size: 30px;
 }
-#loginUser {
-  color: aliceblue;
-  font-size:20px;
+#titleRow {
+  height: 70px;
 }
 </style>
