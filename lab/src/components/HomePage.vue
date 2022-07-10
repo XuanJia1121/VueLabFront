@@ -9,51 +9,73 @@
           <font id="title">MMLab</font>
         </div>
         <div class="col-8 d-flex justify-content-end">
-          <el-button @click="test()" type="info" icon="el-icon-s-custom" circle></el-button>
+          <el-button type="info" icon="el-icon-s-custom" circle></el-button>
         </div>
       </div>
     </div>
   </div>
   
-  <div class="container">
-    <div class="row mt-3">
-      <div class="col-4 mt-5">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+  <el-container>
+    <el-aside>
+      <el-row class="tac">
+        <el-col :span="12">
+          <el-menu
+            default-active="2"
+            class="el-menu-vertical-demo"
+            @open="handleOpen"
+            @close="handleClose">
+            <el-menu-item index="1">
+              <i class="el-icon-menu"></i>
+              <span slot="title">XX管理</span>
+            </el-menu-item>
+            <el-menu-item index="2">
+              <i class="el-icon-menu"></i>
+              <span slot="title">XX管理</span>
+            </el-menu-item>
+          </el-menu>
+        </el-col>
+      </el-row>
+    </el-aside>
+    <el-main>
+       <div class="container">
+        <div class="row mt-3">
+          <div class="col-4 mt-5">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-4 mt-5">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-4 mt-5">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-4 mt-5">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-4 mt-5">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    </el-main>
+  </el-container>
   
 </div>
 </template>
 
 <script>
 /* eslint-disable */
-
-import {ApiServer} from '../api/http.js'
 
 export default {
   data() {
@@ -62,15 +84,12 @@ export default {
     }
   },
   methods: {
-    test() {
-      ApiServer.fetch('/test/test',{})
-      .then(function(res){
-        console.log(res);
-      })
-      .catch(function(err){
-        console.log(err);
-      })
-    }
+      handleOpen(key, keyPath) {
+        console.log(key, keyPath);
+      },
+      handleClose(key, keyPath) {
+        console.log(key, keyPath);
+      }
   },
 }
 </script>
