@@ -17,6 +17,9 @@ axios.interceptors.request.use(
 // 異常處理
 axios.interceptors.response.use(
   response => {
+    if (response.data.code != '200') {
+      console.log('伺服器出錯');
+    }
     return response;
   },
   err => {

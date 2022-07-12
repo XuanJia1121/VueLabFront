@@ -9,7 +9,7 @@
           <font id="title">MMLab</font>
         </div>
         <div class="col-8 d-flex justify-content-end">
-          <el-button type="info" icon="el-icon-s-custom" circle></el-button>
+          <el-button @click="test()" type="info" icon="el-icon-s-custom" circle></el-button>
         </div>
       </div>
     </div>
@@ -77,6 +77,8 @@
 <script>
 /* eslint-disable */
 
+import {ApiServer} from '../api/http.js'
+
 export default {
   data() {
     return {
@@ -89,6 +91,11 @@ export default {
       },
       handleClose(key, keyPath) {
         console.log(key, keyPath);
+      },
+      test(){
+        ApiServer.fetch('/test/test',{}).then(function(){
+
+        })
       }
   },
 }
