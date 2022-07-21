@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="text-center">
-                        <strong class="text-danger">{{loginErrMsg}}</strong>
+                        <strong class="text-danger">{{GET_ERRMSG}}</strong>
                     </div>
 
                     <hr>
@@ -58,19 +58,20 @@
 
 <script>
 
-import {mapActions} from 'vuex';
+import {mapActions,mapGetters,mapMutations} from 'vuex';
 
 export default {
     data() {
         return {
-           loginErrMsg:'',
            user : {
             username:'',
             password:''
            }
         }
-    },methods: {
+    },
+    methods: {
         ...mapActions(['LoginApi']),
+        ...mapMutations(['SET_ERRMSG']),
         login(){
             if(this.loginValid(this.user)){
                 this.LoginApi(this.user)
@@ -81,19 +82,25 @@ export default {
                     console.log(err);
                 });
             }
+            if (this.GET_USERINFO.token) {
+                this.$router.push('/');
+            }
         },
         loginValid(user){
             if (!user.username) {
-                this.loginErrMsg = '帳號不得為空'
+                this.SET_ERRMSG('帳號不得為空');
                 return false;
             }
             if (!user.password) {
-                this.loginErrMsg = '密碼不得為空'
+                this.SET_ERRMSG('密碼不得為空');
                 return false;
             }
             return true;
-        }
+        },
     },
+    computed:{
+        ...mapGetters(['GET_ERRMSG','GET_USERINFO'])
+    }
 }
 </script>
 

@@ -9,7 +9,13 @@
           <font id="title">MMLab</font>
         </div>
         <div class="col-8 d-flex justify-content-end">
-          <el-button @click="toLogin()" type="info" icon="el-icon-s-custom" circle></el-button>
+          <el-button v-if="!GET_USERINFO.token" @click="toLogin()" type="info" icon="el-icon-s-custom" round>登入</el-button>
+          <el-dropdown v-else>
+            <el-button type="info" round>{{GET_USERINFO.username}}</el-button>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item>登出</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
         </div>
       </div>
     </div>
@@ -77,7 +83,7 @@
 <script>
 /* eslint-disable */
 
-// import {ApiServer} from '../api/http.js'
+import {mapGetters} from 'vuex'
 
 export default {
   data() {
@@ -96,18 +102,30 @@ export default {
         this.$router.push('/login');
       }
   },
+  computed: {
+    ...mapGetters(['GET_USERINFO'])
+  }
 }
 </script>
 
 <style scoped>
-#jumbotron {
-  background-color: rgb(87, 92, 160);
-}
-#title {
-  color:aliceblue;
-  font-size: 30px;
-}
-#titleRow {
-  height: 70px;
-}
+  #jumbotron {
+    background-color: rgb(87, 92, 160);
+  }
+  #title {
+    color:aliceblue;
+    font-size: 30px;
+  }
+  #titleRow {
+    height: 70px;
+  }
+ .el-dropdown {
+    vertical-align: top;
+  }
+  .el-dropdown + .el-dropdown {
+    margin-left: 15px;
+  }
+  .el-icon-arrow-down {
+    font-size: 12px;
+  }
 </style>

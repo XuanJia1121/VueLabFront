@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-// import store from "../store";
+import store from "../store";
 
 //view
 import HomePage from "../components/HomePage.vue";
@@ -39,16 +39,16 @@ const router = new Router({
   routes,
 });
 
-// router.beforeEach((to, from, next) => {
-//   //路由需要認證
-//   if (to.meta.requireAuth) {
-//     //判斷store裡是否有token
-//     if (Object.keys(store.state.userinfo).length != 0) {
-//       next();
-//     } else {
-//       next({path: '/login',})
-//     }
-//   } next();
-// })
+router.beforeEach((to, from, next) => {
+  //路由需要認證
+  if (to.meta.requireAuth || to.path === '/login') {
+    //判斷store裡是否有token
+    if (store.state.userinfo) {
+      next();
+    } else {
+      next({path: '/login',})
+    }
+  } next();
+})
 
 export default router;
