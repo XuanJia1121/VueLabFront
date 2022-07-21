@@ -13,7 +13,7 @@
           <el-dropdown v-else>
             <el-button type="info" round>{{GET_USERINFO.username}}</el-button>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>登出</el-dropdown-item>
+              <el-dropdown-item @click="Logout()">登出</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </div>
@@ -83,7 +83,7 @@
 <script>
 /* eslint-disable */
 
-import {mapGetters} from 'vuex'
+import {mapGetters,mapActions} from 'vuex'
 
 export default {
   data() {
@@ -92,6 +92,7 @@ export default {
     }
   },
   methods: {
+      ...mapActions(['Logout']),
       handleOpen(key, keyPath) {
         console.log(key, keyPath);
       },
@@ -100,7 +101,7 @@ export default {
       },
       toLogin(){
         this.$router.push('/login');
-      }
+      },
   },
   computed: {
     ...mapGetters(['GET_USERINFO'])

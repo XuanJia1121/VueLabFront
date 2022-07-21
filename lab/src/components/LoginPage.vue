@@ -75,15 +75,13 @@ export default {
         login(){
             if(this.loginValid(this.user)){
                 this.LoginApi(this.user)
-                .then(function(data){
+                .then((data) => {
                     console.log(data);
+                    this.toHome();
                 })
-                .catch(function(err){
+                .catch((err) => {
                     console.log(err);
                 });
-            }
-            if (this.GET_USERINFO.token) {
-                this.$router.push('/');
             }
         },
         loginValid(user){
@@ -97,6 +95,9 @@ export default {
             }
             return true;
         },
+        toHome(){
+            this.$router.push('/');
+        }
     },
     computed:{
         ...mapGetters(['GET_ERRMSG','GET_USERINFO'])

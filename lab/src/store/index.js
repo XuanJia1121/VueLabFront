@@ -47,6 +47,9 @@ const actions = {
             })
         })
     },
+    Logout({commit}){
+        commit('SET_USERINFO',{});
+    }
 };
 
 export default new Vuex.Store({
