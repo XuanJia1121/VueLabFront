@@ -1,6 +1,18 @@
 <template>
-
     <div>
+        <!-- top -->
+        <div id="jumbotron" class="jumbotron jumbotron-fluid">
+            <div class="container">
+            <div id="titleRow" class="row align-items-center">
+                <div class="col-4">
+                    <a href="/" id="title">MMLab</a>
+                    </div>
+                    <div class="col-8 d-flex justify-content-end">
+                </div>
+            </div>
+            </div>
+        </div>
+
         <body>
         <div class="container">
             <div class="row">
@@ -110,9 +122,22 @@ export default {
 #jumbotron {
   background-color: rgb(87, 92, 160);
 }
-
 #title {
   color:aliceblue;
+  font-size: 30px;
+  text-decoration: none;
+}
+#titleRow {
+  height: 70px;
+}
+.el-dropdown {
+  vertical-align: top;
+}
+.el-dropdown + .el-dropdown {
+  margin-left: 15px;
+}
+.el-icon-arrow-down {
+  font-size: 12px;
 }
 
 body {

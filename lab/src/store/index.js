@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import createPersistedState from "vuex-persistedstate";
 Vue.use(Vuex);
 
 import {ApiServer} from '../api/http.js'
@@ -38,7 +39,7 @@ const actions = {
                 } else {
                     let user = JSON.parse(data.data);
                     commit('SET_USERINFO',user);
-                    commit('SET_ERRMSG',data.msg);
+                    commit('SET_ERRMSG','');
                     resolve(data);
                 }
             })
@@ -56,5 +57,6 @@ export default new Vuex.Store({
     state,
     mutations,
     getters,
-    actions
+    actions,
+    plugins: [createPersistedState()],
 });

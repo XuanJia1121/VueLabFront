@@ -10,38 +10,15 @@
         </div>
         <div class="col-8 d-flex justify-content-end">
           <el-button v-if="!GET_USERINFO.token" @click="toLogin()" type="info" icon="el-icon-s-custom" round>登入</el-button>
-          <el-dropdown v-else>
-            <el-button type="info" round>{{GET_USERINFO.username}}</el-button>
-            <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item @click="Logout()">登出</el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown>
+          <el-button v-else type="warning" icon="el-icon-s-custom" @click="logoutBtn()" round>登出</el-button>
+          <el-button type="primary" icon="el-icon-shopping-cart-1" circle></el-button>
+          <el-button type="primary" icon="el-icon-s-tools" circle></el-button>
         </div>
       </div>
     </div>
   </div>
   
   <el-container>
-    <el-aside>
-      <el-row class="tac">
-        <el-col :span="12">
-          <el-menu
-            default-active="2"
-            class="el-menu-vertical-demo"
-            @open="handleOpen"
-            @close="handleClose">
-            <el-menu-item index="1">
-              <i class="el-icon-menu"></i>
-              <span slot="title">XX管理</span>
-            </el-menu-item>
-            <el-menu-item index="2">
-              <i class="el-icon-menu"></i>
-              <span slot="title">XX管理</span>
-            </el-menu-item>
-          </el-menu>
-        </el-col>
-      </el-row>
-    </el-aside>
     <el-main>
        <div class="container">
         <div class="row mt-3">
@@ -76,7 +53,28 @@
       </div>
     </el-main>
   </el-container>
-  
+
+  <!-- modal -->
+    <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </div>
 </template>
 
@@ -88,7 +86,7 @@ import {mapGetters,mapActions} from 'vuex'
 export default {
   data() {
     return {
-      
+
     }
   },
   methods: {
@@ -102,10 +100,14 @@ export default {
       toLogin(){
         this.$router.push('/login');
       },
+      logoutBtn(){
+        this.Logout();
+        this.$router.push('/');
+      },
   },
   computed: {
     ...mapGetters(['GET_USERINFO'])
-  }
+  },
 }
 </script>
 
